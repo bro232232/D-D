@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&D-like Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        #game {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="game">
+        <h1>Welcome to the Adventure!</h1>
+        <div id="character-creation">
+            <h2>Create Your Character</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name"><br><br>
+            <label for="class">Class:</label>
+            <select id="class">
+                <option value="warrior">Warrior</option>
+                <option value="mage">Mage</option>
+                <option value="rogue">Rogue</option>
+            </select><br><br>
+            <button onclick="startGame()">Start Game</button>
+        </div>
+        <div id="gameplay" class="hidden">
+            <h2 id="character-name"></h2>
+            <p id="character-class"></p>
+            <p id="story">You find yourself at the entrance of a dark cave. What do you do?</p>
+            <button onclick="exploreCave()">Explore the Cave</button>
+        </div>
+    </div>
+    <script>
+        function startGame() {
+            const name = document.getElementById('name').value;
+            const characterClass = document.getElementById('class').value;
+            if (name && characterClass) {
+                document.getElementById('character-creation').classList.add('hidden');
+                document.getElementById('gameplay').classList.remove('hidden');
+                document.getElementById('character-name').innerText = name;
+                document.getElementById('character-class').innerText = `Class: ${characterClass}`;
+            } else {
+                alert('Please enter a name and select a class.');
+            }
+        }
+
+        function exploreCave() {
+            document.getElementById('story').innerText = 'You venture into the cave and encounter a goblin!';
+        }
+    </script>
+</body>
+</html>
